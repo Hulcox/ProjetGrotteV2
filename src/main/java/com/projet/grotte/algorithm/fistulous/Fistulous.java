@@ -40,7 +40,7 @@ public class Fistulous extends Concretion {
                     stalactites.add(stalactite);
                     iterator.remove();
                 } else {
-                    System.out.println("\nFistuleuse " + counter + " détruite\n");
+                    //System.out.println("\nFistuleuse " + counter + " détruite\n");
                     iterator.remove();
                 }
             }
