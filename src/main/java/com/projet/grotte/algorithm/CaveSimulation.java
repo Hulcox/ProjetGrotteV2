@@ -17,8 +17,8 @@ import java.util.*;
 @Getter
 public class CaveSimulation {
 
-    public static final int SIZE_CAVE = 50;
-    public static final int CEILING_Y = 100;
+    public static final int SIZE_CAVE = 800;
+    public static final int CEILING_Y = 500;
     private List<Drop> drops = new ArrayList<>();
     private List<Fistulous> fistulouses = new ArrayList<>();
     private List<Stalactite> stalactites = new ArrayList<>();

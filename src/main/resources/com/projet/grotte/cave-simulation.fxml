@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Line?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.grotte.CaveSimulationController">
+    <children>
+        <Line fx:id="line1" startX="0.0" startY="0.0" endX="0.0" endY="600.0" strokeWidth="5"/>
+        <Line fx:id="line2" startX="800.0" startY="0.0" endX="800.0" endY="600.0" strokeWidth="5"/>
+    </children>
+</Pane>
