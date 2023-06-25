@@ -1,6 +1,4 @@
 
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 l
 <src/test/java/com/projet/grotte/algorithm/drop/DropTest.java,7\a\7a31c7610f3930a4a9e91c66fe07e8a85850e176
 e

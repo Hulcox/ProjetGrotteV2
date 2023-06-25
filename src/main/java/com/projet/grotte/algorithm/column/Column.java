@@ -56,7 +56,7 @@ public class Column extends Concretion {
             final int[] index = {1};
             columnsStringified.append("\n\n---------- COLONNES ----------");
             columns.forEach(column -> {
-                        columnsStringified.append("\nFistuleuse N°").append(index[0])
+                        columnsStringified.append("\nColonne N°").append(index[0])
                                 .append("\n\tPosition : ")
                                 .append(column.getPosX())
                                 .append("\n\tDiamètre : ")

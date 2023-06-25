@@ -17,8 +17,8 @@ import java.util.*;
 @Getter
 public class CaveSimulation {
 
-    public static final int SIZE_CAVE = 800;
-    public static final int CEILING_Y = 500;
+    public static final int SIZE_CAVE = 40;
+    public static final int CEILING_Y = 50;
     private List<Drop> drops = new ArrayList<>();
     private List<Fistulous> fistulouses = new ArrayList<>();
     private List<Stalactite> stalactites = new ArrayList<>();
@@ -47,10 +47,6 @@ public class CaveSimulation {
 
         @Override
         public void run() {
-            //POUR DEBUG, A SUPPRIMER
-            /*if (counter == 1) {
-                stalactites.addAll(List.of(new Stalactite(3,  2, 6, 1), new Stalactite(5, 2, 6, 2)));
-            }*/
             Random random = new Random();
             if (random.nextBoolean()) {
                 //Créer une goutte
@@ -84,8 +80,8 @@ public class CaveSimulation {
                         Fistulous.fistulousesToString(fistulouses) +
                         Stalactite.stalactitesToString(stalactites) +
                         Drapery.draperiesToString(draperies) +
-                        Column.columnsToString(columns);
-                        //Stalagmite.stalagmitesToString(stalagmites);
+                        Column.columnsToString(columns) +
+                        Stalagmite.stalagmitesToString(stalagmites);
         System.out.println("\nTOUR " + counter + results);
         this.setCounter(this.getCounter() + 1);
     }

@@ -2,10 +2,6 @@ package com.projet.grotte.design.dropDesign;
 
 import com.projet.grotte.algorithm.CaveSimulation;
 import com.projet.grotte.algorithm.Concretion;
-import com.projet.grotte.algorithm.fistulous.Fistulous;
-import com.projet.grotte.algorithm.stalactite.Stalactite;
-import com.projet.grotte.algorithm.stalagmite.Stalagmite;
-import com.projet.grotte.design.columnDesign.ColumnDesign;
 import com.projet.grotte.design.fistulousDesign.FistulousDesign;
 import com.projet.grotte.design.stalactiteDesign.StalactiteDesign;
 import com.projet.grotte.design.stalagmiteDesign.StalagmiteDesign;
@@ -47,9 +43,9 @@ public class DropDesign extends Concretion {
         this.posY = posY;
         this.weight = WEIGTH;
         this.limestone = LIMESTONE_CHARGE;
-        this.dropCircle = new Circle(DIAMETER*2, Color.AQUA);
+        this.dropCircle = new Circle(DIAMETER * 2, Color.AQUA);
         dropCircle.setCenterX(posX);
-        dropCircle.setCenterY(posY+DIAMETER*2);
+        dropCircle.setCenterY(posY + DIAMETER * 2);
     }
 
     public Circle getDropCircle() {
@@ -85,8 +81,8 @@ public class DropDesign extends Concretion {
         double posXMax = posX + diameter / 2;
 
         if ((posXMinCurrentDrop >= posXMin && posXMinCurrentDrop <= posXMax) || (posXMaxCurrentDrop >= posXMin && posXMaxCurrentDrop <= posXMax)) {
-            //System.out.println("Goutte sur fistuleuse");
-            this.dropCircle.setCenterY(SIZE_CAVE_Y+ size);
+            System.out.println("Goutte sur fistuleuse");
+            this.dropCircle.setCenterY(SIZE_CAVE_Y + size);
             this.setPosY(SIZE_CAVE_Y + size);
             this.dropCircle.setCenterX(posX);
         }
@@ -105,9 +101,7 @@ public class DropDesign extends Concretion {
             for (DropDesign secondDrop : drops) {
                 double[] posXCurrentDrop = getSurfaceCoveredByDrop(this);
                 double[] posXSecondDrop = getSurfaceCoveredByDrop(secondDrop);
-                //System.out.println(Arrays.toString(posXCurrentDrop) +", "+ Arrays.toString(posXSecondDrop));
                 boolean secondAndCurrentDropAreStuck = CaveSimulation.checkValuesAreInRange(posXCurrentDrop, posXSecondDrop);
-                //System.out.println(secondAndCurrentDropAreStuck);
                 if (secondAndCurrentDropAreStuck && !secondDrop.isFalling()) {
                     secondDrop.evolve(secondDrop.getWeight(), secondDrop.getLimestone(), secondDrop.getDiameter());
                     isNotOnAnotherDrop = false;
@@ -173,25 +167,25 @@ public class DropDesign extends Concretion {
                             if (Math.round(drop.getPosX()) == Math.round(fistulous.getPosX()) && fistulous.isHollow()) {
                                 fistulous.setHollow(false);
                             }
-                            fistulous.setSize(fistulous.getSize()+ drop.limestone / 5);
-                            fistulous.getFistulousTriangle().getPoints().set(0,fistulous.getPosX()-fistulous.getDiameter()- (drop.limestone / 10));
+                            fistulous.setSize(fistulous.getSize() + drop.limestone / 5);
+                            fistulous.getFistulousTriangle().getPoints().set(0, fistulous.getPosX() - fistulous.getDiameter() - (drop.limestone / 10));
                             fistulous.getFistulousTriangle().getPoints().set(1, (double) SIZE_CAVE_Y);
-                            fistulous.getFistulousTriangle().getPoints().set(2,fistulous.getPosX()+fistulous.getDiameter()+ (drop.limestone / 10));
+                            fistulous.getFistulousTriangle().getPoints().set(2, fistulous.getPosX() + fistulous.getDiameter() + (drop.limestone / 10));
                             fistulous.getFistulousTriangle().getPoints().set(3, (double) SIZE_CAVE_Y);
-                            fistulous.getFistulousTriangle().getPoints().set(4,fistulous.getPosX());
-                            fistulous.getFistulousTriangle().getPoints().set(5, SIZE_CAVE_Y+fistulous.getSize());
+                            fistulous.getFistulousTriangle().getPoints().set(4, fistulous.getPosX());
+                            fistulous.getFistulousTriangle().getPoints().set(5, SIZE_CAVE_Y + fistulous.getSize());
 
                         }
                     }
                     for (StalactiteDesign stalactite : stalactites) {
                         if (stalactite.getPosX() > posXMin && stalactite.getPosX() < posXMax) {
-                            stalactite.setSize(stalactite.getSize()+ drop.limestone / 5);
-                            stalactite.getStalactiteTriangle().getPoints().set(0,stalactite.getPosX()-stalactite.getDiameter()- (drop.limestone / 10));
+                            stalactite.setSize(stalactite.getSize() + drop.limestone / 5);
+                            stalactite.getStalactiteTriangle().getPoints().set(0, stalactite.getPosX() - stalactite.getDiameter() - (drop.limestone / 10));
                             stalactite.getStalactiteTriangle().getPoints().set(1, (double) SIZE_CAVE_Y);
-                            stalactite.getStalactiteTriangle().getPoints().set(2,stalactite.getPosX()+stalactite.getDiameter()+ (drop.limestone / 10));
+                            stalactite.getStalactiteTriangle().getPoints().set(2, stalactite.getPosX() + stalactite.getDiameter() + (drop.limestone / 10));
                             stalactite.getStalactiteTriangle().getPoints().set(3, (double) SIZE_CAVE_Y);
-                            stalactite.getStalactiteTriangle().getPoints().set(4,stalactite.getPosX());
-                            stalactite.getStalactiteTriangle().getPoints().set(5, SIZE_CAVE_Y+stalactite.getSize());
+                            stalactite.getStalactiteTriangle().getPoints().set(4, stalactite.getPosX());
+                            stalactite.getStalactiteTriangle().getPoints().set(5, SIZE_CAVE_Y + stalactite.getSize());
                         }
                     }
                 } else {
@@ -200,7 +194,7 @@ public class DropDesign extends Concretion {
                     fistulouses.add(fistulous);
                 }
                 drop.falling();
-                //System.out.println("Un goutte tombe");
+                System.out.println("Un goutte tombe");
             }
             if (drop.isFalling()) {
                 drop.falling();
@@ -213,14 +207,15 @@ public class DropDesign extends Concretion {
 
                     if ((stalagmitePosXMin >= posXMin && stalagmitePosXMin <= posXMax) || (stalagmitePosXMax >= posXMin && stalagmitePosXMax <= posXMax)) {
 
-                        if (drop.getPosY() >= FLOOR_Y-stalagmite.getSize()) {System.out.println("Goutte sur stalagmite"+drop.getPosY());
-                            stalagmite.setSize(stalagmite.getSize()+ drop.limestone / 5);
-                            stalagmite.getStalagmiteTriangle().getPoints().set(0,stalagmite.getPosX()-stalagmite.getDiameter()- (drop.limestone / 10));
+                        if (drop.getPosY() >= FLOOR_Y - stalagmite.getSize()) {
+                            System.out.println("Goutte sur stalagmite" + drop.getPosY());
+                            stalagmite.setSize(stalagmite.getSize() + drop.limestone / 5);
+                            stalagmite.getStalagmiteTriangle().getPoints().set(0, stalagmite.getPosX() - stalagmite.getDiameter() - (drop.limestone / 10));
                             stalagmite.getStalagmiteTriangle().getPoints().set(1, (double) FLOOR_Y);
-                            stalagmite.getStalagmiteTriangle().getPoints().set(2,stalagmite.getPosX()+stalagmite.getDiameter()+ (drop.limestone / 10));
+                            stalagmite.getStalagmiteTriangle().getPoints().set(2, stalagmite.getPosX() + stalagmite.getDiameter() + (drop.limestone / 10));
                             stalagmite.getStalagmiteTriangle().getPoints().set(3, (double) FLOOR_Y);
-                            stalagmite.getStalagmiteTriangle().getPoints().set(4,stalagmite.getPosX());
-                            stalagmite.getStalagmiteTriangle().getPoints().set(5, FLOOR_Y-stalagmite.getSize());
+                            stalagmite.getStalagmiteTriangle().getPoints().set(4, stalagmite.getPosX());
+                            stalagmite.getStalagmiteTriangle().getPoints().set(5, FLOOR_Y - stalagmite.getSize());
 
                             drop.setToDestroy(true);
                         }

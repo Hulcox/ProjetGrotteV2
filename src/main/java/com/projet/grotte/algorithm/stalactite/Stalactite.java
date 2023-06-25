@@ -1,6 +1,5 @@
 package com.projet.grotte.algorithm.stalactite;
 
-import com.projet.grotte.algorithm.CaveSimulation;
 import com.projet.grotte.algorithm.Concretion;
 import lombok.Getter;
 import lombok.Setter;

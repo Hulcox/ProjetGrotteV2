@@ -54,7 +54,7 @@ public class Drapery extends Concretion {
                             double diameter = stalactite2.getDiameter() + stalactite1.getDiameter();
                             boolean canAddInList = draperyListContainsDraperyWithTheseStalactites(draperies, List.of(stalactite1, stalactite2));
                             if (canAddInList) {
-                                draperies.add(new Drapery(posX, diameter, List.of(stalactite1, stalactite2), draperies.size() + 1));
+                                draperies.add(new Drapery(posX, diameter, List.of(stalactite1, stalactite2)));
                             }
                         }
                     }
@@ -80,16 +80,13 @@ public class Drapery extends Concretion {
                             draperies.add(drapery1);
                         }
                         isAlreadyAdd = true;
-                        //Faire en sorte que la draperie qui se colle ne s'ajoute qu'une unique fois
                     }
                 }
             }
-            //Pour ajouter la draperie à la liste si elle ne touche aucune autre
             if (!isAlreadyAdd) {
                 draperies.add(drapery1);
             }
         }
-        System.out.println("88888888888 " + Drapery.draperiesToString(draperies));
     }
 
     private static boolean draperyListContainsDraperyWithTheseStalactites(List<Drapery> draperies, List<Stalactite> stalactites) {

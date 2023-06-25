@@ -42,7 +42,6 @@ public class StalactiteDesign extends Concretion {
     public static boolean isTwoStalactitesAreTouching(com.projet.grotte.design.stalactiteDesign.StalactiteDesign stalactite1, com.projet.grotte.design.stalactiteDesign.StalactiteDesign stalactite2) {
         double[] stalactiteFirstPosition = getSurfaceCoveredByStalactite(stalactite1);
         double[] stalactiteSecondPosition = getSurfaceCoveredByStalactite(stalactite2);
-        //System.out.println(Arrays.toString(stalactiteFirstPosition) + " - " + Arrays.toString(stalactiteSecondPosition));
         return CaveSimulation.checkValuesAreInRange(stalactiteFirstPosition, stalactiteSecondPosition);
     }
 

@@ -113,15 +113,6 @@ public class Drop extends Concretion {
         }
     }
 
-    //TODO
-    /*public void fuse(Drop otherDrop) {
-        double newSize = this.size + otherDrop.getSize();
-        double newLimeStone = this.limestone + otherDrop.getLimestone();
-
-        this.size = newSize;
-        this.limestone = newLimeStone;
-    }*/
-
     public static void tooHeavyDropsFall(List<Drop> drops, List<Fistulous> fistulouses, List<Stalactite> stalactites, List<Stalagmite> stalagmites) {
         for (Drop drop : drops) {
             if (drop.getWeight() >= 10 && !drop.isFalling()) {
@@ -146,7 +137,7 @@ public class Drop extends Concretion {
                     fistulouses.add(fistulous);
                 }
                 drop.falling();
-                //System.out.println("Un goutte tombe");
+                System.out.println("Un goutte tombe");
             }
             if (drop.isFalling()) {
                 drop.falling();
@@ -155,7 +146,7 @@ public class Drop extends Concretion {
                 for (Stalagmite stalagmite : stalagmites) {
                     if (stalagmite.getPosX() > posXMin && stalagmite.getPosX() < posXMax) {
                         if (drop.getPosY() <= stalagmite.getSize()) {
-                            //System.out.println("Goutte sur stalagmite");
+                            System.out.println("Goutte sur stalagmite");
                             stalagmite.setSize(stalagmite.getSize() + 1);
                             drop.setToDestroy(true);
                         }

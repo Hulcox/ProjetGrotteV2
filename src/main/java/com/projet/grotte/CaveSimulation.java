@@ -46,6 +46,9 @@ public class CaveSimulation extends Application {
     private List<ColumnDesign> columns = new ArrayList<>();
     private List<Drapery> draperies = new ArrayList<>();
 
+    public static void main(String[] args) {
+        launch(args);
+    }
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -98,9 +101,5 @@ public class CaveSimulation extends Application {
             }
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
