@@ -21,19 +21,8 @@ public class Stalactite extends Concretion {
         this.size = size;
     }
 
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        //TODO
-    }
-
-    public static boolean isTwoStalactitesAreTouching(Stalactite stalactite1, Stalactite stalactite2) {
-        double[] stalactiteFirstPosition = getSurfaceCoveredByStalactite(stalactite1);
-        double[] stalactiteSecondPosition = getSurfaceCoveredByStalactite(stalactite2);
-        //System.out.println(Arrays.toString(stalactiteFirstPosition) + " - " + Arrays.toString(stalactiteSecondPosition));
-        return CaveSimulation.checkValuesAreInRange(stalactiteFirstPosition, stalactiteSecondPosition);
-    }
-
     public static String stalactitesToString(List<Stalactite> stalactites) {
+        if(!stalactites.isEmpty()){
         StringBuilder stalactitesStringified = new StringBuilder();
         stalactitesStringified.append("\n\n---------- STALACTITES ----------");
         stalactites.forEach(stalactite -> {
@@ -51,11 +40,5 @@ public class Stalactite extends Concretion {
         );
         return stalactitesStringified.toString();
     }
-
-    public static double[] getSurfaceCoveredByStalactite(Stalactite stalactite) {
-        double positionMin = stalactite.getPosX() - stalactite.getDiameter() / 2;
-        double positionMax = stalactite.getPosX() + stalactite.getDiameter() / 2;
-        return new double[]{positionMin, positionMax};
-    }
-
+        return "";}
 }

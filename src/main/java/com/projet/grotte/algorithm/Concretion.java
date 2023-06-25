@@ -13,7 +13,4 @@ public abstract class Concretion {
         this.posX = posX;
         this.diameter = diameter;
     }
-
-    public abstract void evolve(double newWeight, double newLimestone, double newDiameter);
-
 }

@@ -41,11 +41,10 @@ public class Drop extends Concretion {
         this.limestone = LIMESTONE_CHARGE;
     }
 
-    @Override
     public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        setWeight(this.getWeight() + newWeight);
-        setLimestone(this.getLimestone() + newLimestone);
-        super.setDiameter(this.getDiameter() + newDiameter);
+        setWeight(Math.round(this.getWeight() + newWeight));
+        setLimestone(Math.round(this.getLimestone() + newLimestone));
+        super.setDiameter(Math.round(this.getDiameter() + newDiameter));
     }
 
     public void isDropOnConcretion(List<Fistulous> fistulouses, List<Stalactite> stalactites) {
@@ -64,9 +63,7 @@ public class Drop extends Concretion {
     private void checkDropOnConcretions(double posXMinCurrentDrop, double posXMaxCurrentDrop, double posX, double diameter, double size) {
         double posXMin = posX - diameter / 2;
         double posXMax = posX + diameter / 2;
-
         if ((posXMinCurrentDrop > posXMin && posXMinCurrentDrop < posXMax) || (posXMaxCurrentDrop > posXMin && posXMaxCurrentDrop < posXMax)) {
-            //System.out.println("Goutte sur fistuleuse");
             this.setPosY(this.getPosY() - size);
         }
     }
@@ -78,13 +75,11 @@ public class Drop extends Concretion {
         } else {
             boolean isNotOnAnotherDrop = true;
             for (Drop secondDrop : drops) {
-                double[] posXCurrentDrop = getSurfaceCoveredByDrop(this);
-                double[] posXSecondDrop = getSurfaceCoveredByDrop(secondDrop);
-                //System.out.println(Arrays.toString(posXCurrentDrop) +", "+ Arrays.toString(posXSecondDrop));
+                double[] posXCurrentDrop = CaveSimulation.getSurfaceCovered(this.getPosX(), this.getDiameter());
+                double[] posXSecondDrop = CaveSimulation.getSurfaceCovered(secondDrop.getPosX(), secondDrop.getDiameter());
                 boolean secondAndCurrentDropAreStuck = CaveSimulation.checkValuesAreInRange(posXCurrentDrop, posXSecondDrop);
-                //System.out.println(secondAndCurrentDropAreStuck);
                 if (secondAndCurrentDropAreStuck && !secondDrop.isFalling()) {
-                    System.out.println("Goutte doit evoluer");
+                    System.out.println("Goutte fusionne.");
                     secondDrop.evolve(secondDrop.getWeight(), secondDrop.getLimestone(), secondDrop.getDiameter());
                     isNotOnAnotherDrop = false;
                 }
@@ -93,12 +88,6 @@ public class Drop extends Concretion {
                 drops.add(this);
             }
         }
-    }
-
-    private static double[] getSurfaceCoveredByDrop(Drop drop) {
-        double positionMin = drop.getPosX() - drop.getDiameter() / 2;
-        double positionMax = drop.getPosX() + drop.getDiameter() / 2;
-        return new double[]{positionMin, positionMax};
     }
 
     public void falling() {
@@ -177,21 +166,24 @@ public class Drop extends Concretion {
     }
 
     public static String dropsToString(List<Drop> drops) {
-        StringBuilder dropsStringified = new StringBuilder();
-        final int[] index = {1};
-        dropsStringified.append("\n\n---------- GOUTTES ---------- ");
-        drops.forEach(drop -> {
-            dropsStringified.append("\nGoutte N°").append(index[0])
-                    .append("\n\tPosition : (")
-                    .append(drop.getPosX()).append(",").append(drop.getPosY())
-                    .append(")\n\tPoids : ")
-                    .append(drop.getWeight())
-                    .append("\n\tDiamètre : ")
-                    .append(drop.getDiameter())
-                    .append("\n\tCalcaire : ")
-                    .append(drop.getLimestone());
-            index[0]++;
-        });
-        return dropsStringified.toString();
+        if (!drops.isEmpty()) {
+            StringBuilder dropsStringified = new StringBuilder();
+            final int[] index = {1};
+            dropsStringified.append("\n\n---------- GOUTTES ---------- ");
+            drops.forEach(drop -> {
+                dropsStringified.append("\nGoutte N°").append(index[0])
+                        .append("\n\tPosition : (")
+                        .append(drop.getPosX()).append(",").append(drop.getPosY())
+                        .append(")\n\tPoids : ")
+                        .append(drop.getWeight())
+                        .append("\n\tDiamètre : ")
+                        .append(drop.getDiameter())
+                        .append("\n\tCalcaire : ")
+                        .append(drop.getLimestone());
+                index[0]++;
+            });
+            return dropsStringified.toString();
+        }
+        return "";
     }
 }

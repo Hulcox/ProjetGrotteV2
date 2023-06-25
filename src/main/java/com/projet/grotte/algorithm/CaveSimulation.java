@@ -17,7 +17,7 @@ import java.util.*;
 @Getter
 public class CaveSimulation {
 
-    public static final int SIZE_CAVE = 50;
+    public static final int SIZE_CAVE = 40;
     public static final int CEILING_Y = 100;
     private List<Drop> drops = new ArrayList<>();
     private List<Fistulous> fistulouses = new ArrayList<>();
@@ -48,9 +48,9 @@ public class CaveSimulation {
         @Override
         public void run() {
             //POUR DEBUG, A SUPPRIMER
-            if (counter == 1) {
+            /*if (counter == 1) {
                 stalactites.addAll(List.of(new Stalactite(3,  2, 6, 1), new Stalactite(5, 2, 6, 2)));
-            }
+            }*/
             Random random = new Random();
             if (random.nextBoolean()) {
                 //Créer une goutte
@@ -70,8 +70,10 @@ public class CaveSimulation {
             Optional<Column> optionalColumn = Column.shouldColumnsBeCreated(stalactites, stalagmites);
             optionalColumn.ifPresent(column -> columns.add(column));
             //check for create Drapery
-            List<Drapery> newDraperies = Drapery.shouldDraperyBeCreated(stalactites);
-            draperies.addAll(newDraperies);
+            List<Drapery> draperiesTemp = Drapery.shouldDraperyBeCreated(stalactites);
+            if (!draperiesTemp.isEmpty()) {
+                Drapery.isDraperyTouchAnotherDrapery(draperiesTemp, draperies);
+            }
             showConcretions();
         }
     };
@@ -81,8 +83,9 @@ public class CaveSimulation {
                 Drop.dropsToString(drops) +
                         Fistulous.fistulousesToString(fistulouses) +
                         Stalactite.stalactitesToString(stalactites) +
-                        Drapery.draperiesToString(draperies);
-        //Stalagmite.stalagmitesToString(stalagmites);
+                        Drapery.draperiesToString(draperies) +
+                        Column.columnsToString(columns);
+                        //Stalagmite.stalagmitesToString(stalagmites);
         System.out.println("\nTOUR " + counter + results);
         this.setCounter(this.getCounter() + 1);
     }
@@ -96,5 +99,11 @@ public class CaveSimulation {
             }
         }
         return false;
+    }
+
+    public static double[] getSurfaceCovered(double posX, double diameter) {
+        double positionMin = posX - (diameter / 2);
+        double positionMax = posX + (diameter / 2);
+        return new double[]{positionMin, positionMax};
     }
 }

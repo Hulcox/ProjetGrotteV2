@@ -88,7 +88,6 @@ class DropTest {
 
         drop.isDropOnAnotherDrop(drops);
 
-        //System.out.println(initialDiameter + "  " + dropTest2.getDiameter()+ "  " + drop.getDiameter());
         assertEquals(initialDiameter, dropTest1.getDiameter());
         assertEquals(initialDiameter + 2, dropTest2.getDiameter());
     }

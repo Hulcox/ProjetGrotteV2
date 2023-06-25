@@ -41,17 +41,31 @@ public class Column extends Concretion {
     }
 
     public static boolean isCollisionHappenedBetweenStalactitesAndStalagmites(Stalactite stalactite, Stalagmite stalagmite) {
-        double[] stalactitePos = Stalactite.getSurfaceCoveredByStalactite(stalactite);
-        double[] stalagmitePos = Stalagmite.getSurfaceCoveredByStalagmite(stalagmite);
-        boolean stalagmiteAndStalactiteTouch = CaveSimulation.checkValuesAreInRange(stalactitePos, stalagmitePos);
+        double[] stalactiteSurface = CaveSimulation.getSurfaceCovered(stalactite.getPosX(), stalactite.getDiameter());
+        double[] stalagmiteSurface = CaveSimulation.getSurfaceCovered(stalagmite.getPosX(), stalagmite.getDiameter());
+        boolean stalagmiteAndStalactiteTouch = CaveSimulation.checkValuesAreInRange(stalactiteSurface, stalagmiteSurface);
         if (stalagmiteAndStalactiteTouch) {
             return stalactite.getSize() + stalagmite.getSize() >= CEILING_Y;
         }
         return false;
     }
 
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        // TODO
+    public static String columnsToString(List<Column> columns) {
+        if (!columns.isEmpty()) {
+            StringBuilder columnsStringified = new StringBuilder();
+            final int[] index = {1};
+            columnsStringified.append("\n\n---------- COLONNES ----------");
+            columns.forEach(column -> {
+                        columnsStringified.append("\nFistuleuse N°").append(index[0])
+                                .append("\n\tPosition : ")
+                                .append(column.getPosX())
+                                .append("\n\tDiamètre : ")
+                                .append(column.getDiameter());
+                        index[0]++;
+                    }
+            );
+            return columnsStringified.toString();
+        }
+        return "";
     }
 }
