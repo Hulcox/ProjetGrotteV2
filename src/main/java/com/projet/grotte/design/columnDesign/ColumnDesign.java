@@ -25,26 +25,17 @@ public class ColumnDesign extends Concretion {
 
     private Polygon StalagmiteInColumnTriangle;
 
-    public ColumnDesign(double posX, double diameter) {
+    public ColumnDesign(double posX, double diameter, StalactiteDesign stalactiteDesign, StalagmiteDesign stalagmiteDesign) {
         super(posX, diameter);
 
-        double x1Stalagmite = posX-diameter; // Point inférieur gauche (coordonnée x)
-        double y1Stalagmite = FLOOR_Y; // Point inférieur gauche (coordonnée y)
-        double x2Stalagmite = posX+diameter; // Point inférieur droit (coordonnée x)
-        double y2Stalagmite = FLOOR_Y; // Point inférieur droit (coordonnée y)
-
-        double x1Stalactite = posX-diameter; // Point inférieur gauche (coordonnée x)
-        double y1Stalactite = SIZE_CAVE_Y; // Point inférieur gauche (coordonnée y)
-        double x2Stalactite = posX+diameter; // Point inférieur droit (coordonnée x)
-        double y2Stalactite = SIZE_CAVE_Y; // Point inférieur droit (coordonnée y)
-
-        double x3 = posX; // Point supérieur (coordonnée x)
-        double y3 = FLOOR_Y/2; // Point supérieur (coordonnée y)
-
-        this.StalagmiteInColumnTriangle = new Polygon(x1Stalagmite, y1Stalagmite, x2Stalagmite, y2Stalagmite, x3, y3);
+        this.StalagmiteInColumnTriangle = stalagmiteDesign.getStalagmiteTriangle();
+        this.StalagmiteInColumnTriangle.getPoints().set(4,posX);
+        this.StalagmiteInColumnTriangle.getPoints().set(5,FLOOR_Y/2-50);
         this.StalagmiteInColumnTriangle.setFill(Color.BROWN);
 
-        this.StalactiteInColumnTriangle = new Polygon(x1Stalactite, y1Stalactite, x2Stalactite, y2Stalactite, x3, y3);
+        this.StalactiteInColumnTriangle = stalactiteDesign.getStalactiteTriangle();
+        this.StalactiteInColumnTriangle.getPoints().set(4,posX);
+        this.StalactiteInColumnTriangle.getPoints().set(5,FLOOR_Y/2+50);
         this.StalactiteInColumnTriangle.setFill(Color.BROWN);
     }
 
@@ -55,7 +46,6 @@ public class ColumnDesign extends Concretion {
             Iterator<StalagmiteDesign> stalagmiteIterator = stalagmites.iterator();
             while (stalagmiteIterator.hasNext()) {
                 StalagmiteDesign stalagmite = stalagmiteIterator.next();
-                System.out.println("Taille column : " + stalactite.getSize() + stalagmite.getSize() );
                 if (isCollisionHappenedBetweenStalactitesAndStalagmites(stalactite, stalagmite)) {
                     root.getChildren().remove(stalagmite.getStalagmiteTriangle());
                     root.getChildren().remove(stalactite.getStalactiteTriangle());
@@ -63,7 +53,7 @@ public class ColumnDesign extends Concretion {
                     stalagmiteIterator.remove();
                     double posXColumn = (stalactite.getPosX() + stalagmite.getPosX()) / 2;
                     double diameterColumn = stalactite.getDiameter() + stalagmite.getDiameter();
-                    ColumnDesign column = new ColumnDesign(posXColumn, diameterColumn);
+                    ColumnDesign column = new ColumnDesign(posXColumn, diameterColumn, stalactite, stalagmite);
                     root.getChildren().add(column.StalactiteInColumnTriangle);
                     root.getChildren().add(column.StalagmiteInColumnTriangle);
                     return Optional.of(column);

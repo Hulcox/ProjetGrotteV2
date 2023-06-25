@@ -31,7 +31,7 @@ public class StalagmiteDesign extends Concretion {
         double y3 = FLOOR_Y-size; // Point supérieur (coordonnée y)
 
         this.stalagmiteTriangle = new Polygon(x1, y1, x2, y2, x3, y3);
-        this.stalagmiteTriangle.setFill(Color.SADDLEBROWN);
+        this.stalagmiteTriangle.setFill(Color.ROSYBROWN);
     }
 
     public Polygon getStalagmiteTriangle() {
