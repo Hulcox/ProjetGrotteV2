@@ -68,7 +68,6 @@ public class FistulousDesign extends Concretion {
                     root.getChildren().remove(fistulous.getFistulousTriangle());
                     iterator.remove();
                 } else {
-                    System.out.println("\nFistuleuse " + counter + " détruite\n");
                     root.getChildren().remove(fistulous.getFistulousTriangle());
                     iterator.remove();
                 }
