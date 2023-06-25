@@ -60,7 +60,6 @@ public class DropDesign extends Concretion {
         this.dropCircle = dropCircle;
     }
 
-    @Override
     public void evolve(double newWeight, double newLimestone, double newDiameter) {
         setWeight(this.getWeight() + newWeight);
         setLimestone(this.getLimestone() + newLimestone);

@@ -38,11 +38,6 @@ public class StalagmiteDesign extends Concretion {
         return stalagmiteTriangle;
     }
 
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        //TODO
-    }
-
     public static double[] getSurfaceCoveredByStalagmite(com.projet.grotte.design.stalagmiteDesign.StalagmiteDesign stalagmite) {
         double positionMin = stalagmite.getPosX() - stalagmite.getDiameter() / 2;
         double positionMax = stalagmite.getPosX() + stalagmite.getDiameter() / 2;

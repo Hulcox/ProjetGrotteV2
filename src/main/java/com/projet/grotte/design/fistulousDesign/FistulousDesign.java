@@ -54,11 +54,6 @@ public class FistulousDesign extends Concretion {
         isHollow = hollow;
     }
 
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        //TODO
-    }
-
     public static void fistulousIsBecomeStalactite(List<FistulousDesign> fistulouses, List<StalactiteDesign> stalactites, Pane root) {
         Iterator<FistulousDesign> iterator = fistulouses.iterator();
         int counter = 0;

@@ -39,12 +39,6 @@ public class StalactiteDesign extends Concretion {
     public Polygon getStalactiteTriangle() {
         return stalactiteTriangle;
     }
-
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        //TODO
-    }
-
     public static boolean isTwoStalactitesAreTouching(com.projet.grotte.design.stalactiteDesign.StalactiteDesign stalactite1, com.projet.grotte.design.stalactiteDesign.StalactiteDesign stalactite2) {
         double[] stalactiteFirstPosition = getSurfaceCoveredByStalactite(stalactite1);
         double[] stalactiteSecondPosition = getSurfaceCoveredByStalactite(stalactite2);

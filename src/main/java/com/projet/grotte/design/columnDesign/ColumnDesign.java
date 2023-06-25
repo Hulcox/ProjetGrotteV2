@@ -82,9 +82,4 @@ public class ColumnDesign extends Concretion {
         }
         return false;
     }
-
-    @Override
-    public void evolve(double newWeight, double newLimestone, double newDiameter) {
-        // TODO
-    }
 }
